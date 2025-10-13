@@ -1,0 +1,237 @@
+table Date
+	lineageTag: effc9adc-c5bc-4c8c-97b1-72af9141c11f
+	dataCategory: Time
+
+	column DateKey
+		dataType: dateTime
+		isHidden
+		isKey
+		formatString: Long Date
+		lineageTag: 2f648371-60da-4335-906c-f8771203d29c
+		summarizeBy: none
+		sourceColumn: DateKey
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Year
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 465e56e5-ab78-40bf-b95d-28469946f98a
+		summarizeBy: none
+		sourceColumn: Year
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthNum
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: a9c84a1a-0b8e-4249-82a9-8b58342f3c06
+		summarizeBy: none
+		sourceColumn: MonthNum
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthFull
+		dataType: string
+		isHidden
+		lineageTag: 11822126-cce6-423e-891a-d8a9d567a263
+		summarizeBy: none
+		sourceColumn: MonthFull
+		sortByColumn: MonthNum
+
+		changedProperty = IsHidden
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthAbbr
+		dataType: string
+		isHidden
+		lineageTag: 18a8654c-d610-480e-9afd-697477dbc0ba
+		summarizeBy: none
+		sourceColumn: MonthAbbr
+		sortByColumn: MonthNum
+
+		changedProperty = IsHidden
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column QuarterNum
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 3580170a-848c-4a37-9182-a61625e2f0ad
+		summarizeBy: none
+		sourceColumn: QuarterNum
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column QuarterFull
+		dataType: string
+		isHidden
+		lineageTag: 4b91a5aa-9392-4613-8a06-9ffe09823ff8
+		summarizeBy: none
+		sourceColumn: QuarterFull
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column QuarterNameAbbr
+		dataType: string
+		isHidden
+		lineageTag: d1c573c4-4530-48c6-bc49-81ab46b48f2e
+		summarizeBy: none
+		sourceColumn: QuarterNameAbbr
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column YearAndQuarterNum
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: d6433f3a-1cec-49e5-b02a-c16a579d5d39
+		summarizeBy: none
+		sourceColumn: YearAndQuarterNum
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column YearAndMonthNum
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: a5a2aa4d-426b-4569-9954-ed10051451bd
+		summarizeBy: none
+		sourceColumn: YearAndMonthNum
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column QuarterAndYearAbbr
+		dataType: string
+		isHidden
+		lineageTag: 28a971d3-ee8c-4733-af2d-8dec5e3bdac6
+		summarizeBy: none
+		sourceColumn: QuarterAndYearAbbr
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthAndYearAbbr
+		dataType: string
+		isHidden
+		lineageTag: 65eacea6-7aaf-40b6-aa23-71b5e97bdabf
+		summarizeBy: none
+		sourceColumn: MonthAndYearAbbr
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthAndYear
+		dataType: string
+		isHidden
+		lineageTag: cce027a4-f156-449d-a2ee-e9c470079a46
+		summarizeBy: none
+		sourceColumn: MonthAndYear
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column QuarterAndYear
+		dataType: string
+		isHidden
+		lineageTag: 693701f6-9107-4b81-a3f3-5ee03a9e28aa
+		summarizeBy: none
+		sourceColumn: QuarterAndYear
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	hierarchy Calendar-YQMD
+		lineageTag: a625b4e2-f00a-41c3-8db7-085a21944a37
+
+		level Year
+			lineageTag: cd157de2-8c21-44a3-bce0-28faf9884445
+			column: Year
+
+		level Quarter
+			lineageTag: 3342123f-7534-495d-adce-5c266c9bf204
+			column: QuarterFull
+
+		level Month
+			lineageTag: ba5268ac-43e4-4c71-9b4a-ec62435136fc
+			column: MonthFull
+
+		level Day
+			lineageTag: 620a61b8-9676-44f0-848c-e7c702de85b0
+			column: DateKey
+
+	hierarchy 'Calendar - YMD'
+		lineageTag: 338931c0-3a48-4081-89f2-d0328698223e
+
+		level Year
+			lineageTag: 2b36076e-87ab-41c8-9998-7e4125fe2d7e
+			column: Year
+
+		level Month
+			lineageTag: b327bbda-6f17-4362-933f-6b50db37eece
+			column: MonthFull
+
+		level Day
+			lineageTag: ac1aa405-d01b-4e05-92de-2f3fadf21f8b
+			column: DateKey
+
+	hierarchy 'Calendar - YMD Abbr'
+		lineageTag: 663621bc-b648-40e6-a954-f848ede77275
+
+		level Year
+			lineageTag: cae9cdc6-1ec4-4a4c-82cd-e4b3714318de
+			column: Year
+
+		level 'Month Abbr'
+			lineageTag: 7dbf3d00-889e-430b-8be2-e4f880de0ad4
+			column: MonthAbbr
+
+		level Day
+			lineageTag: 60986590-53cf-4659-985a-e2df5c896ec5
+			column: DateKey
+
+	partition Date = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\phakk\OneDrive\Desktop\9EXPERT-Case Study Power BI Desktop-Version 36\Datasources\DateTable.xlsx"), null, true),
+				    DimDate_Table = Source{[Item="DimDate",Kind="Table"]}[Data],
+				    #"Changed Type with Locale" = Table.TransformColumnTypes(DimDate_Table, {{"DateKey", type date}}, "en-GB"),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Changed Type with Locale",{{"Year", Int64.Type}, {"MonthNum", Int64.Type}, {"MonthFull", type text}, {"MonthAbbr", type text}, {"QuarterNum", Int64.Type}, {"QuarterFull", type text}, {"QuarterNameAbbr", type text}, {"YearAndQuarterNum", Int64.Type}, {"YearAndMonthNum", Int64.Type}, {"QuarterAndYearAbbr", type text}, {"MonthAndYearAbbr", type text}, {"MonthAndYear", type text}, {"QuarterAndYear", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

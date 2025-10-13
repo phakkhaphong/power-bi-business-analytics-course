@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Business Analytic"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "9144d7dd-e335-424c-b821-05bc72e62398"
+  }
+}

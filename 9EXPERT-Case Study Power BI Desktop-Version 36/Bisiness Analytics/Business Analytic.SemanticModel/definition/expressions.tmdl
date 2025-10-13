@@ -1,0 +1,191 @@
+expression Parameter1 = #"Sample File" meta [IsParameterQuery=true, BinaryIdentifier=#"Sample File", Type="Binary", IsParameterQueryRequired=true]
+	lineageTag: ea95884f-cc91-4faf-8995-6b81d7420502
+	queryGroup: 'Transform File from Color\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transform Sample File' =
+		let
+		    Source = Csv.Document(Parameter1,[Delimiter="	", Columns=2, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+		    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true])
+		in
+		    #"Promoted Headers"
+	lineageTag: e9b9bc88-4c3d-423c-a056-0bec3ac940e8
+	queryGroup: 'Transform File from Color'
+
+	annotation PBI_ResultType = Table
+
+expression 'Sample File' =
+		let
+		    Source = Folder.Files("C:\Users\phakk\OneDrive\Desktop\9EXPERT-Case Study Power BI Desktop-Version 36\Datasources\Color"),
+		    #"C:\Users\phakk\OneDrive\Desktop\9EXPERT-Case Study Power BI Desktop-Version 36\Datasources\Color\_CarColor_02 txt" = Source{[#"Folder Path"="C:\Users\phakk\OneDrive\Desktop\9EXPERT-Case Study Power BI Desktop-Version 36\Datasources\Color\",Name="CarColor_02.txt"]}[Content]
+		in
+		    #"C:\Users\phakk\OneDrive\Desktop\9EXPERT-Case Study Power BI Desktop-Version 36\Datasources\Color\_CarColor_02 txt"
+	lineageTag: 10b35788-be94-4b5c-a4bc-c317be186402
+	queryGroup: 'Transform File from Color\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transform File' =
+		let
+		    Source = (Parameter1 as binary) => let
+		    Source = Csv.Document(Parameter1,[Delimiter="	", Columns=2, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+		    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true])
+		in
+		    #"Promoted Headers"
+		in
+		    Source
+	mAttributes: [ FunctionQueryBinding = "{""exemplarFormulaName"":""Transform Sample File""}" ]
+	lineageTag: 377b2ebf-282b-4ce1-9391-9deca90307c1
+	queryGroup: 'Transform File from Color\Helper Queries'
+
+	annotation PBI_ResultType = Function
+
+expression Parameter2 = #"Sample File (2)" meta [IsParameterQuery=true, BinaryIdentifier=#"Sample File (2)", Type="Binary", IsParameterQueryRequired=true]
+	lineageTag: e52ab5a2-b49b-47c7-b523-58f71f236f86
+	queryGroup: 'Transform File from Sales by Country\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transform Sample File (2)' =
+		let
+		    Source = Csv.Document(Parameter2,[Delimiter=",", Columns=6, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+		    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true])
+		in
+		    #"Promoted Headers"
+	lineageTag: f16cbb16-fed7-436d-be70-a9a268e3cbad
+	queryGroup: 'Transform File from Sales by Country'
+
+	annotation PBI_ResultType = Table
+
+expression 'Sample File (2)' =
+		let
+		    Source = Folder.Files("C:\Users\phakk\OneDrive\Desktop\9EXPERT-Case Study Power BI Desktop-Version 36\Sales by Country"),
+		    #"C:\Users\phakk\OneDrive\Desktop\9EXPERT-Case Study Power BI Desktop-Version 36\Sales by Country\_MX Sales csv" = Source{[#"Folder Path"="C:\Users\phakk\OneDrive\Desktop\9EXPERT-Case Study Power BI Desktop-Version 36\Sales by Country\",Name="MX Sales.csv"]}[Content]
+		in
+		    #"C:\Users\phakk\OneDrive\Desktop\9EXPERT-Case Study Power BI Desktop-Version 36\Sales by Country\_MX Sales csv"
+	lineageTag: 4f9b760e-5b49-479e-a255-a36732600e6a
+	queryGroup: 'Transform File from Sales by Country\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transform File (2)' =
+		let
+		    Source = (Parameter2 as binary) => let
+		    Source = Csv.Document(Parameter2,[Delimiter=",", Columns=6, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+		    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true])
+		in
+		    #"Promoted Headers"
+		in
+		    Source
+	mAttributes: [ FunctionQueryBinding = "{""exemplarFormulaName"":""Transform Sample File (2)""}" ]
+	lineageTag: 759f6f10-eb91-4886-a07d-23f127d2817b
+	queryGroup: 'Transform File from Sales by Country\Helper Queries'
+
+	annotation PBI_ResultType = Function
+
+expression 'Sales by Country' =
+		let
+		    Source = Folder.Files("C:\Users\phakk\OneDrive\Desktop\9EXPERT-Case Study Power BI Desktop-Version 36\Sales by Country"),
+		    #"Filtered Hidden Files1" = Table.SelectRows(Source, each [Attributes]?[Hidden]? <> true),
+		    #"Invoke Custom Function1" = Table.AddColumn(#"Filtered Hidden Files1", "Transform File (2)", each #"Transform File (2)"([Content])),
+		    #"Renamed Columns1" = Table.RenameColumns(#"Invoke Custom Function1", {"Name", "Source.Name"}),
+		    #"Removed Other Columns1" = Table.SelectColumns(#"Renamed Columns1", {"Source.Name", "Transform File (2)"}),
+		    #"Expanded Table Column1" = Table.ExpandTableColumn(#"Removed Other Columns1", "Transform File (2)", Table.ColumnNames(#"Transform File (2)"(#"Sample File (2)"))),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Expanded Table Column1",{{"Source.Name", type text}, {"ProductID", Int64.Type}, {"Date", type text}, {"Zip", type text}, {"Units", Int64.Type}, {"Revenue", type number}, {"Country", type text}})
+		in
+		    #"Changed Type"
+	lineageTag: 826daa66-6773-46fe-9346-7a5c4d3a5733
+	queryGroup: 'Not used'
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression Web =
+		let
+		    Source = Web.BrowserContents("https://www.bangchak.co.th/th/oilprice/historical?year=2025"),
+		    #"Extracted Table From Html" = Html.Table(Source, {{"Column1", "TABLE.table.table\-\-historical-oilprice > * > TR > TH[rowspan=""2""]:not([colspan]):nth-child(1):nth-last-child(2), TABLE.table.table\-\-historical-oilprice > * > TR > TH:not([colspan]):not([rowspan]):nth-child(1):nth-last-child(8)"}, {"Column2", "TABLE.table.table\-\-historical-oilprice > * > TR > TH[rowspan=""2""]:not([colspan]):nth-child(1):nth-last-child(2) + TH[colspan=""9""]:not([rowspan]):nth-child(2):nth-last-child(1), TABLE.table.table\-\-historical-oilprice > * > TR > TH:not([colspan]):not([rowspan]):nth-child(1):nth-last-child(7), TABLE.table.table\-\-historical-oilprice > * > TR > TH:not([colspan]):not([rowspan]):nth-child(1):nth-last-child(8) + TD:not([colspan]):not([rowspan]):nth-child(2):nth-last-child(7)"}, {"Column3", "TABLE.table.table\-\-historical-oilprice > * > TR > TH[rowspan=""2""]:not([colspan]):nth-child(1):nth-last-child(2) + TH[colspan=""9""]:not([rowspan]):nth-child(2):nth-last-child(1), TABLE.table.table\-\-historical-oilprice > * > TR > TH:not([colspan]):not([rowspan]):nth-child(1):nth-last-child(7) + TH:not([colspan]):not([rowspan]):nth-child(2):nth-last-child(6), TABLE.table.table\-\-historical-oilprice > * > TR > TH:not([colspan]):not([rowspan]):nth-child(1):nth-last-child(8) + TD:not([colspan]):not([rowspan]):nth-child(2):nth-last-child(7) + TD:not([colspan]):not([rowspan]):nth-child(3):nth-last-child(6)"}, {"Column4", "TABLE.table.table\-\-historical-oilprice > * > TR > TH[rowspan=""2""]:not([colspan]):nth-child(1):nth-last-child(2) + TH[colspan=""9""]:not([rowspan]):nth-child(2):nth-last-child(1), TABLE.table.table\-\-historical-oilprice > * > TR > TH:not([colspan]):not([rowspan]):nth-child(1):nth-last-child(7) + TH:not([colspan]):not([rowspan]):nth-child(2):nth-last-child(6) + TH:not([colspan]):not([rowspan]):nth-child(3):nth-last-child(5), TABLE.table.table\-\-historical-oilprice > * > TR > TH:not([colspan]):not([rowspan]):nth-child(1):nth-last-child(8) + TD:not([colspan]):not([rowspan]):nth-child(2):nth-last-child(7) + TD:not([colspan]):not([rowspan]):nth-child(3):nth-last-child(6) + TD:not([colspan]):not([rowspan]):nth-child(4):nth-last-child(5)"}, {"Column5", "TABLE.table.table\-\-historical-oilprice > * > TR > TH[rowspan=""2""]:not([colspan]):nth-child(1):nth-last-child(2) + TH[colspan=""9""]:not([rowspan]):nth-child(2):nth-last-child(1), TABLE.table.table\-\-historical-oilprice > * > TR > TH:not([colspan]):not([rowspan]):nth-child(1):nth-last-child(7) + TH:not([colspan]):not([rowspan]):nth-child(2):nth-last-child(6) + TH:not([colspan]):not([rowspan]):nth-child(3):nth-last-child(5) + TH:not([colspan]):not([rowspan]):nth-child(4):nth-last-child(4), TABLE.table.table\-\-historical-oilprice > * > TR > TH:not([colspan]):not([rowspan]):nth-child(1):nth-last-child(8) + TD:not([colspan]):not([rowspan]):nth-child(2):nth-last-child(7) + TD:not([colspan]):not([rowspan]):nth-child(3):nth-last-child(6) + TD:not([colspan]):not([rowspan]):nth-child(4):nth-last-child(5) + TD:not([colspan]):not([rowspan]):nth-child(5):nth-last-child(4)"}, {"Column6", "TABLE.table.table\-\-historical-oilprice > * > TR > TH[rowspan=""2""]:not([colspan]):nth-child(1):nth-last-child(2) + TH[colspan=""9""]:not([rowspan]):nth-child(2):nth-last-child(1), TABLE.table.table\-\-historical-oilprice > * > TR > TH:not([colspan]):not([rowspan]):nth-child(1):nth-last-child(7) + TH:not([colspan]):not([rowspan]):nth-child(2):nth-last-child(6) + TH:not([colspan]):not([rowspan]):nth-child(3):nth-last-child(5) + TH:not([colspan]):not([rowspan]):nth-child(4):nth-last-child(4) + TH:not([colspan]):not([rowspan]):nth-child(5):nth-last-child(3), TABLE.table.table\-\-historical-oilprice > * > TR > TH:not([colspan]):not([rowspan]):nth-child(1):nth-last-child(8) + TD:not([colspan]):not([rowspan]):nth-child(2):nth-last-child(7) + TD:not([colspan]):not([rowspan]):nth-child(3):nth-last-child(6) + TD:not([colspan]):not([rowspan]):nth-child(4):nth-last-child(5) + TD:not([colspan]):not([rowspan]):nth-child(5):nth-last-child(4) + TD:not([colspan]):not([rowspan]):nth-child(6):nth-last-child(3)"}, {"Column7", "TABLE.table.table\-\-historical-oilprice > * > TR > TH[rowspan=""2""]:not([colspan]):nth-child(1):nth-last-child(2) + TH[colspan=""9""]:not([rowspan]):nth-child(2):nth-last-child(1), TABLE.table.table\-\-historical-oilprice > * > TR > TH:not([colspan]):not([rowspan]):nth-child(1):nth-last-child(7) + TH:not([colspan]):not([rowspan]):nth-child(2):nth-last-child(6) + TH:not([colspan]):not([rowspan]):nth-child(3):nth-last-child(5) + TH:not([colspan]):not([rowspan]):nth-child(4):nth-last-child(4) + TH:not([colspan]):not([rowspan]):nth-child(5):nth-last-child(3) + TH:not([colspan]):not([rowspan]):nth-child(6):nth-last-child(2), TABLE.table.table\-\-historical-oilprice > * > TR > TH:not([colspan]):not([rowspan]):nth-child(1):nth-last-child(8) + TD:not([colspan]):not([rowspan]):nth-child(2):nth-last-child(7) + TD:not([colspan]):not([rowspan]):nth-child(3):nth-last-child(6) + TD:not([colspan]):not([rowspan]):nth-child(4):nth-last-child(5) + TD:not([colspan]):not([rowspan]):nth-child(5):nth-last-child(4) + TD:not([colspan]):not([rowspan]):nth-child(6):nth-last-child(3) + TD:not([colspan]):not([rowspan]):nth-child(7):nth-last-child(2)"}, {"Column8", "TABLE.table.table\-\-historical-oilprice > * > TR > TH[rowspan=""2""]:not([colspan]):nth-child(1):nth-last-child(2) + TH[colspan=""9""]:not([rowspan]):nth-child(2):nth-last-child(1), TABLE.table.table\-\-historical-oilprice > * > TR > TH:not([colspan]):not([rowspan]):nth-child(1):nth-last-child(7) + TH:not([colspan]):not([rowspan]):nth-child(2):nth-last-child(6) + TH:not([colspan]):not([rowspan]):nth-child(3):nth-last-child(5) + TH:not([colspan]):not([rowspan]):nth-child(4):nth-last-child(4) + TH:not([colspan]):not([rowspan]):nth-child(5):nth-last-child(3) + TH:not([colspan]):not([rowspan]):nth-child(6):nth-last-child(2) + TH:not([colspan]):not([rowspan]):nth-child(7):nth-last-child(1), TABLE.table.table\-\-historical-oilprice > * > TR > TH:not([colspan]):not([rowspan]):nth-child(1):nth-last-child(8) + TD:not([colspan]):not([rowspan]):nth-child(2):nth-last-child(7) + TD:not([colspan]):not([rowspan]):nth-child(3):nth-last-child(6) + TD:not([colspan]):not([rowspan]):nth-child(4):nth-last-child(5) + TD:not([colspan]):not([rowspan]):nth-child(5):nth-last-child(4) + TD:not([colspan]):not([rowspan]):nth-child(6):nth-last-child(3) + TD:not([colspan]):not([rowspan]):nth-child(7):nth-last-child(2) + TD:not([colspan]):not([rowspan]):nth-child(8):nth-last-child(1)"}, {"Column9", "TABLE.table.table\-\-historical-oilprice > * > TR > TH[rowspan=""2""]:not([colspan]):nth-child(1):nth-last-child(2) + TH[colspan=""9""]:not([rowspan]):nth-child(2):nth-last-child(1)"}, {"Column10", "TABLE.table.table\-\-historical-oilprice > * > TR > TH[rowspan=""2""]:not([colspan]):nth-child(1):nth-last-child(2) + TH[colspan=""9""]:not([rowspan]):nth-child(2):nth-last-child(1)"}}, [RowSelector="TABLE.table.table\-\-historical-oilprice > * > TR"]),
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Extracted Table From Html", [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"วันที่", type date}, {"บาท/ลิตร", type number}, {"บาท/ลิตร_1", type number}, {"บาท/ลิตร_2", type number}, {"บาท/ลิตร_3", type number}, {"บาท/ลิตร_4", type number}, {"บาท/ลิตร_5", type number}, {"บาท/ลิตร_6", type number}, {"บาท/ลิตร_7", type text}, {"บาท/ลิตร_8", type text}})
+		in
+		    #"Changed Type"
+	lineageTag: 74f32fa6-b445-4b7d-a447-d060df5cd3f0
+	queryGroup: 'Not used'
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression Countries =
+		let
+		    Source = Csv.Document(File.Contents("C:\Users\phakk\OneDrive\Desktop\9EXPERT-Case Study Power BI Desktop-Version 36\Datasources\Countries.csv"),[Delimiter=",", Columns=4, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+		    #"Use First Row as Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+		    #"Change Type" = Table.TransformColumnTypes(#"Use First Row as Headers",{{"CountryID", Int64.Type}, {"CountryName", type text}, {"CountryName_Local", type text}, {"CountryFlagURL", type text}})
+		in
+		    #"Change Type"
+	lineageTag: a6aa2b09-409f-4d83-83f0-b3c86ab844b0
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression Continent =
+		let
+		    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("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", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#"Country|Continent" = _t]),
+		    #"Split Column by Delimiter" = Table.SplitColumn(Source, "Country|Continent", Splitter.SplitTextByDelimiter("|", QuoteStyle.Csv), {"Country", "Continent"}),
+		    #"Trimmed Text" = Table.TransformColumns(#"Split Column by Delimiter",{{"Country", Text.Trim, type text}, {"Continent", Text.Trim, type text}}),
+		    #"Capitalized Each Word" = Table.TransformColumns(#"Trimmed Text",{{"Continent", Text.Proper, type text}}),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Capitalized Each Word",{{"Country", type text}, {"Continent", type text}})
+		in
+		    #"Changed Type"
+	lineageTag: 5c043c1a-222e-4f6a-80d0-50b6e962ec8f
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression Sales25 =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Users\phakk\OneDrive\Desktop\9EXPERT-Case Study Power BI Desktop-Version 36\Datasources\SalesData2025.xlsx"), null, true),
+		    Sales2025_Sheet = Source{[Item="Sales2025",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(Sales2025_Sheet, [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"InvoiceDate", type date}, {"TotalDiscount", type number}, {"DeliveryCharge", Int64.Type}, {"SalePrice", Int64.Type}, {"Make", type text}, {"Marque", type text}, {"CostPrice", Int64.Type}, {"ColourID", Int64.Type}, {"ClientID", Int64.Type}, {"LabourCost", Int64.Type}, {"SpareParts", Int64.Type}, {"Registration_Date", type date}, {"MileageRange", type text}, {"MileageRangeSort", Int64.Type}, {"VehicleType", type text}, {"InvoiceNumber", Int64.Type}})
+		in
+		    #"Changed Type"
+	lineageTag: b22bd1f3-d43b-488d-b8ae-aca7dae2c380
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression Sales2324 =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Users\phakk\OneDrive\Desktop\9EXPERT-Case Study Power BI Desktop-Version 36\Datasources\SalesData.xlsx"), null, true),
+		    Sales_Table = Source{[Item="Sales",Kind="Table"]}[Data],
+		    #"Changed Type" = Table.TransformColumnTypes(Sales_Table,{{"InvoiceDate", type date}, {"TotalDiscount", Int64.Type}, {"DeliveryCharge", Int64.Type}, {"SalePrice", Int64.Type}, {"Make", type text}, {"Marque", type text}, {"CostPrice", Int64.Type}, {"ColourID", Int64.Type}, {"ClientID", Int64.Type}, {"LabourCost", Int64.Type}, {"SpareParts", Int64.Type}, {"Registration_Date", type date}, {"MileageRange", type text}, {"MileageRangeSort", Int64.Type}, {"VehicleType", type text}, {"InvoiceNumber", Int64.Type}})
+		in
+		    #"Changed Type"
+	lineageTag: cbaeb630-c05a-430a-8c36-acd03c77a336
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression OldClient =
+		let
+		    Source = Pdf.Tables(File.Contents("C:\Users\phakk\OneDrive\Desktop\9EXPERT-Case Study Power BI Desktop-Version 36\Datasources\Clients.pdf"), [Implementation="1.3"]),
+		    Page1 = Source{[Id="Page001"]}[Data],
+		    #"Removed Top Rows" = Table.Skip(Page1,1),
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Top Rows", [PromoteAllScalars=true]),
+		    #"Removed Columns" = Table.RemoveColumns(#"Promoted Headers",{"Address1", "Address2", "County", "Column7", "Column8", "PostCode", "Column11", "ClientSince"}),
+		    #"Replaced Value" = Table.ReplaceValue(#"Removed Columns",null,"Medium",Replacer.ReplaceValue,{"ClientSize"}),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Replaced Value",{{"ClientID", Int64.Type}, {"ClientName", type text}, {"Town", type text}, {"CountryID", Int64.Type}, {"ClientType", type text}, {"ClientSize", type text}, {"IsCreditWorthy", Int64.Type}, {"WebSite", type text}})
+		in
+		    #"Changed Type"
+	lineageTag: 13d7d02b-8818-4d0b-96d1-cf00d063865f
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

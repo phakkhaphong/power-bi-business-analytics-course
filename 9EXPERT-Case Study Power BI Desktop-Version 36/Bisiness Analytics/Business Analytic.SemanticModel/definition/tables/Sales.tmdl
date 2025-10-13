@@ -1,0 +1,230 @@
+table Sales
+	lineageTag: eef4a050-2222-483b-97ad-942319bf77ec
+
+	measure 'Total Sales' = SUM('Sales'[NetSales])
+		formatString: " #,#0.00"
+		lineageTag: 495b4ecf-62f8-4ee8-99bf-ae5a628d555e
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	measure 'Total Costs' = SUM(Sales[SalesCosts])
+		formatString: " #,#0.00"
+		lineageTag: 6d23533d-cc6b-44df-932a-5b5140ee0f2d
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	measure Margin = [Total Sales] - [Total Costs]
+		formatString: " #,#0.00"
+		lineageTag: fab9719c-d37d-44ba-9c68-3e05489008be
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	measure %Margin = ```
+			DIVIDE(([Total Sales]-[Total Costs]),[Total Sales],0)
+			
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 80923f22-8e3d-4fdf-8599-222a3c4b43cc
+
+	column InvoiceDate
+		dataType: dateTime
+		isHidden
+		formatString: Long Date
+		lineageTag: 20a3905d-5b56-4146-b6f7-051b052f604c
+		summarizeBy: none
+		sourceColumn: InvoiceDate
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column ColourID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 381e49d5-4c22-496d-b772-8fa06ff00a05
+		summarizeBy: none
+		sourceColumn: ColourID
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column ClientID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 091be05d-7804-4d96-a0e6-550cd57b0d60
+		summarizeBy: none
+		sourceColumn: ClientID
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column SpareParts
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 83be332c-37a6-4604-81cf-b772ec0746b9
+		summarizeBy: none
+		sourceColumn: SpareParts
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column Registration_Date
+		dataType: dateTime
+		isHidden
+		formatString: Long Date
+		lineageTag: a9bed322-2b18-4b13-b9c0-fa3964c5b95a
+		summarizeBy: none
+		sourceColumn: Registration_Date
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column MileageRangeSort
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: ab51fb34-6b9b-41ab-94e0-720b64d46b9e
+		summarizeBy: none
+		sourceColumn: MileageRangeSort
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column VehicleKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 78b2f3fc-548e-42f9-92e2-5aaea13b70b6
+		summarizeBy: none
+		sourceColumn: VehicleKey
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column NetSales
+		dataType: double
+		isHidden
+		lineageTag: 707ed102-5b81-4dd1-88c2-7abeafa3fbf8
+		summarizeBy: none
+		sourceColumn: NetSales
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column GrossMargin
+		dataType: double
+		isHidden
+		lineageTag: 6568c138-d2fe-4b2b-944d-49e62afd9188
+		summarizeBy: none
+		sourceColumn: GrossMargin
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DirectCost
+		dataType: double
+		isHidden
+		lineageTag: d2f6ea5a-a27b-4731-b35c-9eec722a7f47
+		summarizeBy: none
+		sourceColumn: DirectCost
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column NetMargin
+		dataType: double
+		isHidden
+		lineageTag: c18bb18d-e58c-4f66-96cb-b026274899e4
+		summarizeBy: none
+		sourceColumn: NetMargin
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SalesCosts
+		dataType: double
+		isHidden
+		lineageTag: e0ded31a-af4f-4f46-84ef-e0359b3bf89e
+		summarizeBy: none
+		sourceColumn: SalesCosts
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column VehicleAge = DATEDIFF(Sales[Registration_Date], Sales[InvoiceDate], YEAR)
+		isHidden
+		formatString: 0
+		lineageTag: 85b0be7e-a755-4a62-a216-f89b383af976
+		summarizeBy: none
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column VehicleAgeKey =
+			
+			IF( [VehicleAge] <= 5, 1,
+			IF( [VehicleAge] <=10, 2,
+			IF( [VehicleAge] <=15, 3,
+			IF( [VehicleAge] <=20, 4,
+			IF( [VehicleAge] <=25, 5,
+			IF( [VehicleAge] <=30, 6, 7))))))
+		isHidden
+		formatString: 0
+		lineageTag: eca36729-44ad-4eb4-b010-e6356584ba4a
+		summarizeBy: none
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	partition Sales = m
+		mode: import
+		source =
+				let
+				    Source = Table.Combine({Sales2324, Sales25}),
+				    #"Merged Queries" = Table.NestedJoin(Source, {"Make", "Marque", "VehicleType"}, Vehicle, {"Make", "Marque", "VehicleType"}, "Vehicle", JoinKind.LeftOuter),
+				    #"Expanded Vehicle" = Table.ExpandTableColumn(#"Merged Queries", "Vehicle", {"VehicleKey"}, {"VehicleKey"}),
+				    #"Removed Other Columns" = Table.SelectColumns(#"Expanded Vehicle",{"InvoiceDate", "TotalDiscount", "DeliveryCharge", "SalePrice", "CostPrice", "ColourID", "ClientID", "LabourCost", "SpareParts", "Registration_Date", "MileageRangeSort", "InvoiceNumber", "VehicleKey"}),
+				    #"Added Custom" = Table.AddColumn(#"Removed Other Columns", "NetSales", each [SalePrice]-([TotalDiscount]+[DeliveryCharge])),
+				    #"Added Custom1" = Table.AddColumn(#"Added Custom", "GrossMargin", each [NetSales]-[CostPrice]),
+				    #"Added Custom2" = Table.AddColumn(#"Added Custom1", "DirectCost", each [LabourCost]+[SpareParts]),
+				    #"Added Custom3" = Table.AddColumn(#"Added Custom2", "NetMargin", each [GrossMargin]-([LabourCost]+[SpareParts])),
+				    #"Added Custom4" = Table.AddColumn(#"Added Custom3", "SalesCosts", each [TotalDiscount]+[DeliveryCharge]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Added Custom4",{{"NetSales", type number}, {"GrossMargin", type number}, {"DirectCost", type number}, {"NetMargin", type number}, {"SalesCosts", type number}}),
+				    #"Removed Other Columns1" = Table.SelectColumns(#"Changed Type",{"InvoiceDate", "ColourID", "ClientID", "SpareParts", "Registration_Date", "MileageRangeSort", "VehicleKey", "NetSales", "GrossMargin", "DirectCost", "NetMargin", "SalesCosts"})
+				in
+				    #"Removed Other Columns1"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
