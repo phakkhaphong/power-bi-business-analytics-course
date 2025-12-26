@@ -22,7 +22,7 @@ const config = {
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'your-username', // ⚠️ แก้ไข: เปลี่ยนเป็น GitHub Username หรือ Org ของคุณ
+  organizationName: 'phakkhaphong', // ⚠️ แก้ไข: เปลี่ยนเป็น GitHub Username หรือ Org ของคุณ
   projectName: 'power-bi-business-analytics-course', // ⚠️ แก้ไข: เปลี่ยนเป็นชื่อ Repository ของคุณ
 
   onBrokenLinks: 'throw',
