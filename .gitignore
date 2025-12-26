@@ -123,3 +123,20 @@ build/
 # Documentation build
 docs/_build/
 docs/build/
+
+# Docusaurus
+website/node_modules/
+website/.docusaurus/
+website/build/
+website/.cache/
+website/.env.local
+website/.env.production.local
+website/.env.development.local
+website/.env.test.local
+
+# Labs (keep structure, ignore large files)
+labs/*.pbix
+labs/*.xlsx
+labs/*.csv
+labs/*.bak
+!labs/README.md
