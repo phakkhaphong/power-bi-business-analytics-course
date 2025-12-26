@@ -6,11 +6,11 @@
 
 **หลักสูตรเข้มข้น 12 ชั่วโมง - เน้นการใช้งานเชิงธุรกิจจริง**
 
-[![GitHub stars](https://img.shields.io/github/stars/your-org/power-bi-business-analytics-course?style=social)](https://github.com/your-org/power-bi-business-analytics-course)
-[![GitHub forks](https://img.shields.io/github/forks/your-org/power-bi-business-analytics-course?style=social)](https://github.com/your-org/power-bi-business-analytics-course)
+[![GitHub stars](https://img.shields.io/github/stars/your-username/power-bi-business-analytics-course?style=social)](https://github.com/your-username/power-bi-business-analytics-course)
+[![GitHub forks](https://img.shields.io/github/forks/your-username/power-bi-business-analytics-course?style=social)](https://github.com/your-username/power-bi-business-analytics-course)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-[📚 เริ่มเรียนทันที](https://your-docusaurus-site.com) • [📖 เอกสาร](https://your-docusaurus-site.com/docs) • [💬 Discussions](https://github.com/your-org/power-bi-business-analytics-course/discussions)
+[📚 เริ่มเรียนทันที](https://your-username.github.io/power-bi-business-analytics-course) • [📖 เอกสาร](https://your-username.github.io/power-bi-business-analytics-course/docs) • [💬 Discussions](https://github.com/your-username/power-bi-business-analytics-course/discussions)
 
 </div>
 
@@ -52,23 +52,21 @@
 
 ### 1. Clone Repository
 ```bash
-git clone https://github.com/your-org/power-bi-business-analytics-course.git
+git clone https://github.com/your-username/power-bi-business-analytics-course.git
 cd power-bi-business-analytics-course
 ```
 
-### 2. Setup Environment
-```powershell
-# ติดตั้ง AdventureWorks OLTP
-.\scripts\download-adventureworks.ps1
-
-# ติดตั้งสภาพแวดล้อม
-.\scripts\setup-environment.ps1
+### 2. Setup Docusaurus
+```bash
+cd website
+npm install
+npm start
 ```
 
 ### 3. เริ่มเรียน
-- 📖 อ่าน [เอกสารหลักสูตร](https://your-docusaurus-site.com)
-- 🎯 เริ่มจาก [Module 1](https://your-docusaurus-site.com/modules/01-foundation/01-business-intelligence-overview/README)
-- 📚 ดู [Learning Path](https://your-docusaurus-site.com/learning-path)
+- 📖 อ่าน [เอกสารหลักสูตร](https://your-username.github.io/power-bi-business-analytics-course)
+- 🎯 เริ่มจาก [Module 1](https://your-username.github.io/power-bi-business-analytics-course/modules/01-foundation/01-business-intelligence-overview/README)
+- 📚 ดู [Learning Path](https://your-username.github.io/power-bi-business-analytics-course/learning-path)
 
 ## 📁 โครงสร้าง Repository
 
@@ -80,7 +78,6 @@ power-bi-business-analytics-course/
 │   ├── static/img/        # รูปภาพประกอบ
 │   └── docusaurus.config.js
 ├── labs/                  # ไฟล์ประกอบการเรียน (.pbix, .xlsx, .csv)
-├── scripts/               # Automation scripts
 ├── README.md              # หน้าปก Repo (คุณอยู่ที่นี่)
 └── .gitignore
 ```
@@ -102,6 +99,10 @@ npm run build
 
 ### Deploy
 Website จะถูก deploy อัตโนมัติเมื่อ push ไปที่ branch `main` ผ่าน GitHub Actions
+
+**⚠️ สำคัญ:** ต้องแก้ไข `website/docusaurus.config.js` ให้มี URL และ baseUrl ถูกต้องก่อน deploy
+
+ดูคำแนะนำใน [GITHUB-PAGES-SETUP.md](GITHUB-PAGES-SETUP.md)
 
 ## 📊 ข้อมูลตัวอย่าง
 
@@ -125,9 +126,9 @@ Website จะถูก deploy อัตโนมัติเมื่อ push �
 
 ## 📞 การสนับสนุน
 
-- 📚 [Documentation](https://your-docusaurus-site.com/docs)
-- 💬 [Discussions](https://github.com/your-org/power-bi-business-analytics-course/discussions)
-- 🐛 [Issues](https://github.com/your-org/power-bi-business-analytics-course/issues)
+- 📚 [Documentation](https://your-username.github.io/power-bi-business-analytics-course/docs)
+- 💬 [Discussions](https://github.com/your-username/power-bi-business-analytics-course/discussions)
+- 🐛 [Issues](https://github.com/your-username/power-bi-business-analytics-course/issues)
 - 📧 Email: support@example.com
 
 ## 🤝 Contributing
@@ -152,6 +153,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 Made with ❤️ by the Power BI Community
 
-[⭐ Star this repo](https://github.com/your-org/power-bi-business-analytics-course) if you find it helpful!
+[⭐ Star this repo](https://github.com/your-username/power-bi-business-analytics-course) if you find it helpful!
 
 </div>
