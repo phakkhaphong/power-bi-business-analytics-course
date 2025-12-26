@@ -6,11 +6,11 @@
 
 **หลักสูตรเข้มข้น 12 ชั่วโมง - เน้นการใช้งานเชิงธุรกิจจริง**
 
-[![GitHub stars](https://img.shields.io/github/stars/your-username/power-bi-business-analytics-course?style=social)](https://github.com/your-username/power-bi-business-analytics-course)
-[![GitHub forks](https://img.shields.io/github/forks/your-username/power-bi-business-analytics-course?style=social)](https://github.com/your-username/power-bi-business-analytics-course)
+[![GitHub stars](https://img.shields.io/github/stars/phakkhaphong/power-bi-business-analytics-course?style=social)](https://github.com/phakkhaphong/power-bi-business-analytics-course)
+[![GitHub forks](https://img.shields.io/github/forks/phakkhaphong/power-bi-business-analytics-course?style=social)](https://github.com/phakkhaphong/power-bi-business-analytics-course)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-[📚 เริ่มเรียนทันที](https://your-username.github.io/power-bi-business-analytics-course) • [📖 เอกสาร](https://your-username.github.io/power-bi-business-analytics-course/docs) • [💬 Discussions](https://github.com/your-username/power-bi-business-analytics-course/discussions)
+[📚 เริ่มเรียนทันที](https://phakkhaphong.github.io) • [📖 เอกสาร](https://phakkhaphong.github.io/docs) • [💬 Discussions](https://github.com/phakkhaphong/power-bi-business-analytics-course/discussions)
 
 </div>
 
@@ -52,7 +52,7 @@
 
 ### 1. Clone Repository
 ```bash
-git clone https://github.com/your-username/power-bi-business-analytics-course.git
+git clone https://github.com/phakkhaphong/power-bi-business-analytics-course.git
 cd power-bi-business-analytics-course
 ```
 
@@ -64,9 +64,9 @@ npm start
 ```
 
 ### 3. เริ่มเรียน
-- 📖 อ่าน [เอกสารหลักสูตร](https://your-username.github.io/power-bi-business-analytics-course)
-- 🎯 เริ่มจาก [Module 1](https://your-username.github.io/power-bi-business-analytics-course/modules/01-foundation/01-business-intelligence-overview/README)
-- 📚 ดู [Learning Path](https://your-username.github.io/power-bi-business-analytics-course/learning-path)
+- 📖 อ่าน [เอกสารหลักสูตร](https://phakkhaphong.github.io)
+- 🎯 เริ่มจาก [Module 1](https://phakkhaphong.github.io/modules/01-foundation/01-business-intelligence-overview/README)
+- 📚 ดู [Learning Path](https://phakkhaphong.github.io/learning-path)
 
 ## 📁 โครงสร้าง Repository
 
@@ -126,18 +126,18 @@ Website จะถูก deploy อัตโนมัติเมื่อ push �
 
 ## 📞 การสนับสนุน
 
-- 📚 [Documentation](https://your-username.github.io/power-bi-business-analytics-course/docs)
-- 💬 [Discussions](https://github.com/your-username/power-bi-business-analytics-course/discussions)
-- 🐛 [Issues](https://github.com/your-username/power-bi-business-analytics-course/issues)
+- 📚 [Documentation](https://phakkhaphong.github.io/docs)
+- 💬 [Discussions](https://github.com/phakkhaphong/power-bi-business-analytics-course/discussions)
+- 🐛 [Issues](https://github.com/phakkhaphong/power-bi-business-analytics-course/issues)
 - 📧 Email: support@example.com
 
 ## 🤝 Contributing
 
-เรายินดีรับ contributions! กรุณาอ่าน [CONTRIBUTING.md](CONTRIBUTING.md) สำหรับรายละเอียด
+เรายินดีรับ contributions! กรุณาเปิด Issue หรือ Pull Request ใน GitHub repository
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is open source and available for educational purposes.
 
 ## 🙏 Acknowledgments
 
@@ -153,6 +153,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 Made with ❤️ by the Power BI Community
 
-[⭐ Star this repo](https://github.com/your-username/power-bi-business-analytics-course) if you find it helpful!
+[⭐ Star this repo](https://github.com/phakkhaphong/power-bi-business-analytics-course) if you find it helpful!
 
 </div>
