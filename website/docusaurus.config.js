@@ -15,10 +15,11 @@ const config = {
   // ตัวอย่าง: ถ้า GitHub Username คือ 'your-username' และ Repository คือ 'power-bi-business-analytics-course'
   // url: 'https://your-username.github.io',
   // baseUrl: '/power-bi-business-analytics-course/',  // หรือ '/' ถ้าใช้ custom domain
-  url: 'https://phakkhaphong.github.io',  // ⚠️ แก้ไข: เปลี่ยน 'your-username' เป็น GitHub Username ของคุณ
+  url: 'https://phakkhaphong.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
-  // For GitHub pages deployments, it is often '/<projectName>/'
-  baseUrl: '/power-bi-business-analytics-course/',  // ⚠️ แก้ไข: เปลี่ยนเป็นชื่อ Repository ของคุณ หรือ '/' ถ้าใช้ custom domain
+  // สำหรับ user site (phakkhaphong.github.io) ใช้ baseUrl: '/'
+  // สำหรับ project site (phakkhaphong.github.io/repo-name) ใช้ baseUrl: '/repo-name/'
+  baseUrl: '/',  // ✅ User site ใช้ '/' (ไม่ใช่ '/power-bi-business-analytics-course/')
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
@@ -45,7 +46,7 @@ const config = {
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl: 'https://github.com/your-username/power-bi-business-analytics-course/tree/main/website/',  // ⚠️ แก้ไข: เปลี่ยน 'your-username' เป็น GitHub Username ของคุณ
+          editUrl: 'https://github.com/phakkhaphong/power-bi-business-analytics-course/tree/main/website/',
           routeBasePath: '/', // Serve the docs at the site's root
         },
         blog: false, // Disable blog
@@ -75,7 +76,7 @@ const config = {
             label: 'หลักสูตร',
           },
           {
-            href: 'https://github.com/your-username/power-bi-business-analytics-course',  // ⚠️ แก้ไข: เปลี่ยน 'your-username' เป็น GitHub Username ของคุณ
+            href: 'https://github.com/phakkhaphong/power-bi-business-analytics-course',
             label: 'GitHub',
             position: 'right',
           },
@@ -102,11 +103,11 @@ const config = {
             items: [
               {
                 label: 'GitHub',
-                href: 'https://github.com/your-username/power-bi-business-analytics-course',  // ⚠️ แก้ไข: เปลี่ยน 'your-username' เป็น GitHub Username ของคุณ
+                href: 'https://github.com/phakkhaphong/power-bi-business-analytics-course',
               },
               {
                 label: 'Issues',
-                href: 'https://github.com/your-username/power-bi-business-analytics-course/issues',  // ⚠️ แก้ไข: เปลี่ยน 'your-username' เป็น GitHub Username ของคุณ
+                href: 'https://github.com/phakkhaphong/power-bi-business-analytics-course/issues',
               },
             ],
           },
